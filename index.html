@@ -47,10 +47,10 @@
     </div>
 
     <script>
-        // ランダムな2桁〜3桁の偶数を生成する関数
+        // 2桁の偶数を生成する関数
         function getRandomEvenNumber() {
             const min = 10;  // 2桁の最小値
-            const max = 999; // 3桁の最大値
+            const max = 98;  // 2桁の最大偶数値
             let randomNum;
             do {
                 randomNum = Math.floor(Math.random() * (max - min + 1)) + min;
