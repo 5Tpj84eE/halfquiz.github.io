@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>はんぶんクイズ</title>
+    <!-- Material Design Lite CSS CDN -->
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <!-- Material Design Lite JavaScript CDN -->
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            max-width: 600px;
+            text-align: center;
+            padding: 50px;
+        }
+        .quiz-box {
+            margin-top: 20px;
+        }
+        .result-box {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container mdl-shadow--2dp">
+        <h3>はんぶんクイズ</h3>
+
+        <div class="result-box">
+            <h4>もんだい：<span id="randomNumber"></span></h4>
+            <h4>こたえ：<span id="halfValue"></span></h4>
+        </div>
+
+        <div class="quiz-box">
+            <button id="generateBtn" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                しゅつだい
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // ランダムな2桁〜3桁の偶数を生成する関数
+        function getRandomEvenNumber() {
+            const min = 10;  // 2桁の最小値
+            const max = 999; // 3桁の最大値
+            let randomNum;
+            do {
+                randomNum = Math.floor(Math.random() * (max - min + 1)) + min;
+            } while (randomNum % 2 !== 0); // 偶数かどうかチェック
+            return randomNum;
+        }
+
+        // クイズを出題する関数
+        function generateQuiz() {
+            const randomNum = getRandomEvenNumber();
+            const halfValue = randomNum / 2;
+
+            // 結果を画面に表示
+            document.getElementById('randomNumber').textContent = randomNum;
+            document.getElementById('halfValue').textContent = halfValue;
+        }
+
+        // ボタンクリックイベント
+        document.getElementById('generateBtn').addEventListener('click', generateQuiz);
+    </script>
+
+</body>
+</html>
