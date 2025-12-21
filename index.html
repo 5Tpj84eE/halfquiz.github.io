@@ -88,20 +88,13 @@
   <h1>はんぶんクイズ</h1>
 
   <div class="line">
-
     <span id="question"></span>
   </div>
 
   <div class="line">
-
     <span class="answer-wrapper">
-      <!-- 2桁サイズ固定用 -->
       <span class="answer-base">00</span>
-
-      <!-- 実際の答え -->
       <span id="answer" class="answer-text"></span>
-
-      <!-- 灰色の四角 -->
       <span id="cover" class="answer-cover"></span>
     </span>
   </div>
@@ -110,6 +103,8 @@
 </div>
 
 <script>
+  let lastQuestion = null; // ← 前回の問題を保持
+
   function getRandomEvenNumber() {
     let n;
     do {
@@ -119,7 +114,15 @@
   }
 
   function generateQuiz() {
-    const num = getRandomEvenNumber();
+    let num;
+
+    // 同じ問題が連続しないようにする
+    do {
+      num = getRandomEvenNumber();
+    } while (num === lastQuestion);
+
+    lastQuestion = num;
+
     const half = num / 2;
 
     document.getElementById("question").textContent = num;
