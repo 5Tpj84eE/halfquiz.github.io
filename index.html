@@ -13,8 +13,10 @@
   }
 
   body {
-    background: #e0e0e0;
-    font-family: "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+    /* 明るくやさしいパステルイエロー */
+    background: #FFFDE7;
+    /* 丸みのあるかわいらしいフォントを指定 */
+    font-family: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", "ヒラギノ丸ゴ ProN W4", "Meiryo UI", sans-serif;
     overflow: hidden;
 
     display: flex;
@@ -22,29 +24,45 @@
     align-items: center;
   }
 
+  /* おもちゃのような白いカード風コンテナ */
   .app {
     text-align: center;
+    background: #ffffff;
+    padding: 30px 40px;
+    border-radius: 30px;
+    box-shadow: 0 10px 25px rgba(255, 183, 77, 0.3);
+    border: 6px solid #FFE082;
+    max-width: 90%;
+    box-sizing: border-box;
   }
 
   h1 {
-    font-size: 24px;
-    margin-bottom: 30px;
+    font-size: 32px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #FF7043; /* 親しみやすいオレンジ */
+    text-shadow: 2px 2px 0px #FFE082;
+    letter-spacing: 2px;
   }
 
   .line {
-    font-size: 40px;
-    margin: 20px 0;
+    font-size: 56px;
+    margin: 15px 0;
+    color: #37474F;
+    font-weight: bold;
   }
 
   .answer-wrapper {
     position: relative;
     display: inline-block;
     font-weight: bold;
+    font-size: 56px;
   }
 
   /* 幅基準用（常に2桁） */
   .answer-base {
     visibility: hidden;
+    padding: 0 20px;
   }
 
   /* 実際の答え */
@@ -55,29 +73,54 @@
     justify-content: center;
     align-items: center;
     visibility: hidden;
+    color: #E91E63; /* ワクワクするピンク色 */
   }
 
-  /* 灰色カバー */
+  /* 答えを隠すカバー（はてなブロック風） */
   .answer-cover {
     position: absolute;
     inset: 0;
-    background: #9e9e9e;
+    background: #4FC3F7; /* 明るい水色 */
+    color: #ffffff;
+    border-radius: 20px;
     cursor: pointer;
+    box-shadow: 0 6px 0 #0288D1; /* ぷっくりした立体感 */
+    transition: transform 0.1s;
+    
+    /* 「？」マークを表示 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
+  .answer-cover::after {
+    content: "❓";
+    font-size: 40px;
+  }
+
+  .answer-cover:active {
+    transform: translateY(4px);
+    box-shadow: 0 2px 0 #0288D1;
+  }
+
+  /* もう一回ボタン */
   button {
-    margin-top: 20px;
-    font-size: 22px;
-    padding: 12px 32px;
+    margin-top: 25px;
+    font-size: 26px;
+    font-weight: bold;
+    padding: 14px 40px;
     border: none;
-    border-radius: 6px;
-    background: #3f51b5;
+    border-radius: 50px;
+    background: #66BB6A; /* やさしい黄緑色 */
     color: #ffffff;
     cursor: pointer;
+    box-shadow: 0 6px 0 #388E3C; /* ボタンの立体感 */
+    transition: transform 0.1s;
   }
 
-  button:hover {
-    background: #3f51b5;
+  button:active {
+    transform: translateY(4px);
+    box-shadow: 0 2px 0 #388E3C;
   }
 </style>
 </head>
@@ -130,7 +173,7 @@
 
     // 初期状態に戻す
     document.getElementById("answer").style.visibility = "hidden";
-    document.getElementById("cover").style.display = "block";
+    document.getElementById("cover").style.display = "flex";
   }
 
   document.getElementById("cover").addEventListener("click", () => {
